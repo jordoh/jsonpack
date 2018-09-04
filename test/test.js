@@ -33,6 +33,9 @@ describe('jsonpack', function() {
         ],
         arrayObjectPacked = "string|hello|integer|float|true|false|null|attr1|attr2|attr3^1J9|1J9|1J9|1J9|1J9^1.2^@$0|1|2|A|3|F|4|-1|5|-2|6|-3]|$7|$0|1|2|B|3|F|4|-1|5|-2|6|-3]|8|$0|1|2|C|3|F|4|-1|5|-2|6|-3]|9|@$0|1|2|D|3|F|4|-1|5|-2|6|-3]|$0|1|2|E|3|F|4|-1|5|-2|6|-3]]]]";
 
+    var nullPrototypeObject = Object.create(null),
+        nullPrototypeObjectPacked = "^^^$]";
+
     describe('elemental', function() {
 
         it('is object', function() {
@@ -73,6 +76,10 @@ describe('jsonpack', function() {
 
         it('complex array object', function() {
             expect(jsonpack.pack(arrayObject)).to.eql(arrayObjectPacked);
+        });
+
+        it('null prototype object', function() {
+          expect(jsonpack.pack(nullPrototypeObject)).to.eql(nullPrototypeObjectPacked);
         });
 
     });
