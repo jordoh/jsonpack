@@ -27,6 +27,12 @@ describe('jsonpack', function() {
         },
         deepObjectPacked = "attr1|string|hello|integer|float|true|false|null|attr2|attr3^1J9|1J9|1J9|1J9^1.2^$0|$1|2|3|A|4|E|5|-1|6|-2|7|-3]|8|$1|2|3|B|4|E|5|-1|6|-2|7|-3]|9|@$1|2|3|C|4|E|5|-1|6|-2|7|-3]|$1|2|3|D|4|E|5|-1|6|-2|7|-3]]]";
 
+    var escapedCharacterObject = {
+            attr1: " ",
+            attr2: "+",
+          },
+          escapedCharacterObjectPacked = "attr1|+|attr2|%2B^^^$0|1|2|3]";
+
     var arrayObject = [
             plainObject,
             deepObject
@@ -69,6 +75,10 @@ describe('jsonpack', function() {
 
         it('deep object', function() {
             expect(jsonpack.pack(deepObject)).to.eql(deepObjectPacked);
+        });
+
+        it('escaped string object', function() {
+          expect(jsonpack.pack(escapedCharacterObject)).to.eql(escapedCharacterObjectPacked);
         });
 
         it('complex array object', function() {
