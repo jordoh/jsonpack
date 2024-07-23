@@ -112,11 +112,12 @@
 				if (type === 'string') {
 
 					// The index of that word in the dictionary
-					var index = _indexOf.call(dictionary.strings, item);
+          				var encodedItem = _encode(item);
+					var index = _indexOf.call(dictionary.strings, encodedItem);
 
 					// If not, add to the dictionary and actualize the index
 					if (index == -1) {
-						dictionary.strings.push(_encode(item));
+						dictionary.strings.push(encodedItem);
 						index = dictionary.strings.length - 1;
 					}
 
